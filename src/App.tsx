@@ -1,7 +1,8 @@
 import "./App.css";
 import { Form } from "./components/Form";
+import { GenerateTask } from "./components/GenerateTask";
 
-let randomObjects = [
+let TaskObject = [
   {
     name: "RandomObject1",
     owner: "Owner1",
@@ -40,13 +41,16 @@ let randomObjects = [
 ];
 
 function App() {
+  const TaskElement = TaskObject.map((Task) => {
+    <GenerateTask name={Task.name} />;
+  });
   return (
     <>
       <section className="AddTopBar">
         <Form />
       </section>
       <section className="TaskList">
-        <Task />
+        <TaskElement />
       </section>
     </>
   );
