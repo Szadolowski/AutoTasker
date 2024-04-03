@@ -3,7 +3,7 @@ import React from "react";
 interface GenerateTaskProps {
   name: string;
   owner: string;
-  date: Date;
+  date: string;
   car: string;
   description: string;
 }

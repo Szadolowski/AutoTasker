@@ -1,6 +1,16 @@
 import { useState } from "react";
 
-export const Form = () => {
+interface GenerateTaskProps {
+  onAddTask: (data: {
+    name: string;
+    owner: string;
+    date: string;
+    car: string;
+    description: string;
+  }) => void;
+}
+
+export const Form: React.FC<GenerateTaskProps> = ({ onAddTask }) => {
   const [name, setName]: [
     string,
     React.Dispatch<React.SetStateAction<string>>
@@ -14,6 +24,7 @@ export const Form = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        onAddTask({ name, owner, date, car, description });
       }}
     >
       <input
