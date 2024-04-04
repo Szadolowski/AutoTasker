@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import { Form } from "./components/Form";
-import { GenerateTask } from "./components/GenerateTask";
+import { Form } from "./components/Form/Form";
+import { GenerateTask } from "./components/GenerateTask/GenerateTask";
 
 const taskObject = [
   {
@@ -72,9 +72,8 @@ function App() {
 
   return (
     <>
-      <section className="AddTopBar">
-        <Form onAddTask={addTask} />
-      </section>
+      <Form onAddTask={addTask} />
+
       <section className="TaskList">{TaskElement}</section>
     </>
   );
