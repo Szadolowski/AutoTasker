@@ -1,48 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Form } from "./components/Form/Form";
 import { GenerateTask } from "./components/GenerateTask/GenerateTask";
-
-const taskObject = [
-  {
-    name: "RandomObject1",
-    owner: "Owner1",
-    date: "2023-02-15",
-    car: "Toyota",
-    description: "Random description for object 1",
-  },
-  {
-    name: "RandomObject2",
-    owner: "Owner2",
-    date: "2023-02-15",
-    car: "Ford",
-    description: "Random description for object 2",
-  },
-  {
-    name: "RandomObject3",
-    owner: "Owner3",
-    date: "2023-02-15",
-    car: "Honda",
-    description: "Random description for object 3",
-  },
-  {
-    name: "RandomObject4",
-    owner: "Owner4",
-    date: "2023-02-15",
-    car: "Chevrolet",
-    description: "Random description for object 4",
-  },
-  {
-    name: "RandomObject5",
-    owner: "Owner5",
-    date: "2023-02-15",
-    car: "BMW",
-    description: "Random description for object 5",
-  },
-];
+import data from "./data.json";
 
 function App() {
-  const [task, setTask] = useState(taskObject);
   interface GenerateTaskProps {
     name: string;
     owner: string;
@@ -50,25 +12,42 @@ function App() {
     car: string;
     description: string;
   }
+  const [task, setTask] = useState<GenerateTaskProps[]>([]);
+  useEffect(() => {
+    setTask(data);
+  }, []);
 
   const addTask = (data: GenerateTaskProps) => {
-    const newTask = [...task, data];
-    setTask(newTask);
+    if (task !== null) {
+      const newTask = [...task, data];
+      setTask(newTask);
+    }
   };
 
-  const TaskElement = task.map((Task) => {
-    let key = 0;
-    return (
-      <GenerateTask
-        key={key++}
-        name={Task.name}
-        owner={Task.owner}
-        date={Task.date}
-        car={Task.car}
-        description={Task.description}
-      />
-    );
-  });
+  const updateTaskDate = (index: number, newDate: string) => {
+    setTask((prevTask) => {
+      const updatedTask = [...prevTask];
+      updatedTask[index] = { ...updatedTask[index], date: newDate };
+      return updatedTask;
+    });
+  };
+
+  const TaskElement =
+    task &&
+    task.map((Task, index) => {
+      return (
+        <GenerateTask
+          key={index}
+          onChangeDate={updateTaskDate}
+          index={index}
+          name={Task.name}
+          owner={Task.owner}
+          date={Task.date}
+          car={Task.car}
+          description={Task.description}
+        />
+      );
+    });
 
   return (
     <>
