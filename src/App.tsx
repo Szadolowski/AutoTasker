@@ -5,19 +5,29 @@ import { GenerateTask } from "./components/GenerateTask/GenerateTask";
 import data from "./data.json";
 
 function App() {
-  interface GenerateTaskProps {
+  interface GenerateData {
+    id: number;
     name: string;
     owner: string;
     date: string;
     car: string;
     description: string;
   }
-  const [task, setTask] = useState<GenerateTaskProps[]>([]);
+  // interface GenerateTaskProps {
+  //   id: number;
+  //   name: string;
+  //   owner: string;
+  //   date: string;
+  //   car: string;
+  //   description: string;
+  //   valueIndex: number;
+  // }
+  const [task, setTask] = useState<GenerateData[]>([]);
   useEffect(() => {
     setTask(data);
   }, []);
 
-  const addTask = (data: GenerateTaskProps) => {
+  const addTask = (data: GenerateData) => {
     if (task !== null) {
       const newTask = [...task, data];
       setTask(newTask);
@@ -39,7 +49,8 @@ function App() {
         <GenerateTask
           key={index}
           onChangeDate={updateTaskDate}
-          index={index}
+          id={Task.id}
+          valueIndex={index}
           name={Task.name}
           owner={Task.owner}
           date={Task.date}

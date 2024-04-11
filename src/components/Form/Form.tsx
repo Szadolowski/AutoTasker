@@ -3,6 +3,7 @@ import "./Form.css";
 
 interface GenerateTaskProps {
   onAddTask: (data: {
+    id: number;
     name: string;
     owner: string;
     date: string;
@@ -26,7 +27,8 @@ export const Form: React.FC<GenerateTaskProps> = ({ onAddTask }) => {
       className="AddTopBar"
       onSubmit={(e) => {
         e.preventDefault();
-        onAddTask({ name, owner, date, car, description });
+        const id = 10;
+        onAddTask({ name, owner, date, car, description, id });
       }}
     >
       <label htmlFor="name">

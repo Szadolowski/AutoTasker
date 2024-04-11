@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "RandomObject1",
     "owner": "Owner1",
     "date": "2023-02-15",
@@ -7,6 +8,7 @@
     "description": "Random description for object 1"
   },
   {
+    "id": 2,
     "name": "RandomObject2",
     "owner": "Owner2",
     "date": "2023-02-15",
@@ -14,6 +16,7 @@
     "description": "Random description for object 2"
   },
   {
+    "id": 3,
     "name": "RandomObject3",
     "owner": "Owner3",
     "date": "2023-02-15",
@@ -21,6 +24,7 @@
     "description": "Random description for object 3"
   },
   {
+    "id": 4,
     "name": "RandomObject4",
     "owner": "Owner4",
     "date": "2023-02-15",
@@ -28,6 +32,7 @@
     "description": "Random description for object 4"
   },
   {
+    "id": 5,
     "name": "RandomObject5",
     "owner": "Owner5",
     "date": "2023-02-15",
