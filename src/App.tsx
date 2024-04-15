@@ -34,6 +34,34 @@ function App() {
     }
   };
 
+  const changeTaskPlace = (index: number, change: number) => {
+    setTask((prevTask) => {
+      const updatedTask = [...prevTask];
+      console.log(index, change);
+      if (change) {
+        updatedTask[index] = {
+          ...updatedTask[index],
+          id: updatedTask[index].id - 1,
+        };
+        updatedTask[index - 1] = {
+          ...updatedTask[index - 1],
+          id: updatedTask[index - 1].id + 1,
+        };
+      } else {
+        updatedTask[index] = {
+          ...updatedTask[index],
+          id: updatedTask[index].id + 1,
+        };
+        updatedTask[index + 1] = {
+          ...updatedTask[index + 1],
+          id: updatedTask[index + 1].id - 1,
+        };
+      }
+      console.log(updatedTask, "test");
+      return updatedTask;
+    });
+  };
+
   const updateTaskDate = (index: number, newDate: string) => {
     setTask((prevTask) => {
       const updatedTask = [...prevTask];
@@ -42,6 +70,10 @@ function App() {
     });
   };
 
+  task.sort(function (a, b) {
+    return a.id - b.id;
+  });
+
   const TaskElement =
     task &&
     task.map((Task, index) => {
@@ -49,6 +81,7 @@ function App() {
         <GenerateTask
           key={index}
           onChangeDate={updateTaskDate}
+          onChangeTaskPlace={changeTaskPlace}
           id={Task.id}
           valueIndex={index}
           name={Task.name}
@@ -60,6 +93,7 @@ function App() {
       );
     });
 
+  console.log(task);
   return (
     <>
       <Form onAddTask={addTask} />

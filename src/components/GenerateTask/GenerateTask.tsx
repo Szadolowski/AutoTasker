@@ -4,6 +4,7 @@ import "./GenerateTask.css";
 interface GenerateTaskProps {
   id: number;
   onChangeDate: (index: number, newDate: string) => void;
+  onChangeTaskPlace: (index: number, change: number) => void;
   name: string;
   owner: string;
   date: string;
@@ -21,6 +22,7 @@ export const GenerateTask: React.FC<GenerateTaskProps> = ({
   car,
   description,
   valueIndex,
+  onChangeTaskPlace,
 }) => {
   return (
     <section className="taskSection">
@@ -43,8 +45,22 @@ export const GenerateTask: React.FC<GenerateTaskProps> = ({
           }}
         />
         <nav className="orderEdit">
-          {valueIndex != 0 ? <button>{"<--"}</button> : null}
-          <button>{"-->"}</button>
+          {valueIndex != 0 ? (
+            <button
+              onClick={() => {
+                onChangeTaskPlace(valueIndex, 1);
+              }}
+            >
+              {"<--"}
+            </button>
+          ) : null}
+          <button
+            onClick={() => {
+              onChangeTaskPlace(valueIndex, 0);
+            }}
+          >
+            {"-->"}
+          </button>
         </nav>
       </div>
     </section>
